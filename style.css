@@ -622,3 +622,19 @@ footer {
   color: red; /* 答えは赤字 */
   font-weight: bold;
 }
+/* --- シンプルヘッダー用 --- */
+.simple-header {
+  background-color: #f8f8f8;
+  padding: 15px 0;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+}
+.simple-header h1 {
+  margin: 0;
+  font-size: 1.5em;
+}
+.simple-header h1 a {
+  text-decoration: none;
+  color: #333;
+}
