@@ -1,29 +1,44 @@
 /* --- メインスクリプト --- */
 document.addEventListener('DOMContentLoaded', function() {
 
-  /* --- 1. ポートフォリオのフィルター機能 --- */
-  const filterButtons = document.querySelectorAll('.filter-button');
-  const gridItems = document.querySelectorAll('.grid-item');
+  /* --- 1. 簡易パスワード機能 (index.html専用) --- */
+  const loginSection = document.getElementById('login-section');
+  const quizContent = document.getElementById('quiz-content');
+  const loginForm = document.getElementById('login-form');
 
-  if (filterButtons.length > 0 && gridItems.length > 0) {
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        const filter = button.getAttribute('data-filter');
-        gridItems.forEach(item => {
-          const category = item.getAttribute('data-category');
-          if (filter === 'all' || !category || category === filter) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
+  // index.html の場合のみ、このログイン処理を実行
+  if (loginForm && quizContent) {
+
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    // ↓↓↓ ここにお好きなパスワードを設定してください ↓↓↓
+
+    const PASSWORD = "grammarnazi19"; // 例: "eigoquiz123" など
+
+    // ↑↑↑ ここにお好きなパスワードを設定してください ↑↑↑
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+    // フォームが送信されたときの処理
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // ページの再読み込みを防ぐ
+
+      const passwordInput = document.getElementById('password-input');
+      const loginError = document.getElementById('login-error');
+
+      // パスワードが一致した場合
+      if (passwordInput.value === PASSWORD) {
+        loginSection.style.display = 'none'; // ログインフォームを隠す
+        quizContent.style.display = 'block'; // クイズ一覧を表示する
+        loginError.style.display = 'none'; // エラーメッセージを隠す
+      } else {
+        // パスワードが間違っていた場合
+        loginError.style.display = 'block'; // エラーメッセージを表示
+        passwordInput.value = ""; // 入力をクリア
+      }
     });
   }
 
-  /* --- 2. クイズの個別採点機能 --- */
+
+  /* --- 2. クイズの個別採点機能 (各クイズページ用) --- */
   const quizContainer = document.querySelector('.quiz-container');
 
   if (quizContainer) {
@@ -33,30 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const pageTitle = pageTitleElement ? pageTitleElement.innerText.trim() : '';
 
     // ページタイトルに基づいて正解データを読み込む
-    // --- 勉強部屋 ---
-    if (pageTitle.includes('哲学クイズ (プラトン＆アリストテレス)')) {
-      correctAnswers = {
-        q1: '3', q2: '3', q3: '4', q4: '3', q5: '1', q6: '2', q7: '2', q8: '4', q9: '1', q10: '1',
-        q11: '3', q12: '1', q13: '4', q14: '3', q15: '2', q16: '2', q17: '1', q18: '2', q19: '2', q20: '3'
-      };
-    } else if (pageTitle.includes('デカルト理解度確認クイズ')) {
-      correctAnswers = {
-        q1: '1', q2: '2', q3: '2', q4: '3', q5: '3', q6: '4', q7: '4', q8: '2', q9: '2', q10: '1',
-        q11: '2', q12: '3', q13: '1', q14: '3', q15: '2'
-      };
-    } else if (pageTitle.includes('香港問題クイズ')) {
-      correctAnswers = {
-        q1: '3', q2: '2', q3: '3', q4: '4', q5: '2', q6: '3', q7: '3', q8: '3', q9: '2', q10: '2',
-        q11: '2', q12: '3', q13: '1', q14: '2', q15: '2'
-      };
-    } else if (pageTitle.includes('ロヒンギャ問題クイズ')) {
-      correctAnswers = {
-        q1: '4', q2: '1', q3: '2', q4: '2', q5: '3', q6: '1', q7: '3', q8: '2', q9: '2', q10: '1',
-        q11: '3', q12: '2', q13: '2', q14: '1', q15: '2'
-      };
+    // (注: メインサイトの哲学・国際問題クイズのデータは不要なため削除しました)
 
     // --- 英語学習 (センター試験) ---
-    } else if (pageTitle.includes('センター試験 文法語法クイズ 1990')) {
+    if (pageTitle.includes('センター試験 文法語法クイズ 1990')) {
        correctAnswers = { q1:'2', q2:'3', q3:'2', q4:'1', q5:'3', q6:'2', q7:'3', q8:'2', q9:'1', q10:'1', q11:'1', q12:'2', q13:'1', q14:'2' };
     } else if (pageTitle.includes('センター試験 文法語法クイズ 1991')) {
        correctAnswers = { q1:'2', q2:'4', q3:'4', q4:'2', q5:'1', q6:'1', q7:'4', q8:'2', q9:'3', q10:'1', q11:'1', q12:'3', q13:'4', q14:'3', q15:'2', q16:'3', q17:'3' };
@@ -114,10 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
       correctAnswers = { q1: '1', q2: '2', q3: '4', q4: '1', q5: '2', q6: '3', q7: '4', q8: '1', q9: '3', q10: '1' };
     } else if (pageTitle.includes('センター試験 文法語法クイズ 2018')) {
       correctAnswers = { q1: '3', q2: '2', q3: '1', q4: '4', q5: '1', q6: '3', q7: '1', q8: '3', q9: '3', q10: '3' };
-    } else if (pageTitle.includes('センター試験 文法語法クイズ 2019')) { // ★ New (Final)
-      correctAnswers = { // 2019 (q1-q10)
-        q1: '2', q2: '3', q3: '1', q4: '2', q5: '4', q6: '3', q7: '3', q8: '2', q9: '4', q10: '4'
-      };
+    } else if (pageTitle.includes('センター試験 文法語法クイズ 2019')) {
+      correctAnswers = { q1: '2', q2: '3', q3: '1', q4: '2', q5: '4', q6: '3', q7: '3', q8: '2', q9: '4', q10: '4' };
     }
 
 
@@ -156,6 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
            }
          });
     } else {
+        // クイズページ（.quiz-container がある）なのに正解データが読み込まれなかった場合
+        //（index.html の場合は .quiz-container がないので、ここは実行されない）
         if (quizContainer.querySelector('.check-single-answer-btn')) {
             console.error("Quiz checking function error: Correct answers not loaded. Check page title and script's if/else if conditions. Page Title:", pageTitle);
         }
@@ -163,21 +158,8 @@ document.addEventListener('DOMContentLoaded', function() {
   } // End if (quizContainer)
 
 
-  /* --- 3. 穴埋め問題（クリック表示）機能 --- */
-  const articleContent = document.querySelector('.post article');
-  if (articleContent) {
-    articleContent.addEventListener('click', function(event) {
-      if (event.target.classList.contains('blank-space') && !event.target.classList.contains('revealed')) {
-        const blankSpan = event.target;
-        const answer = blankSpan.getAttribute('data-answer');
-        const idNum = blankSpan.getAttribute('data-id');
-        if (answer) {
-          blankSpan.innerHTML = `(${idNum}: <span class="answer-text">${answer}</span>)`;
-          blankSpan.classList.remove('blank-space');
-          blankSpan.classList.add('revealed');
-        }
-      }
-    });
-  }
+  /* --- 3. 穴埋め問題（クリック表示）機能 (メインサイト用なので、ここでは不要) --- */
+  // const articleContent = document.querySelector('.post article');
+  // ... (穴埋め機能のコードは省略) ...
 
 }); // End of DOMContentLoaded
