@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (pageTitle.includes('センター試験 文法語法クイズ 1993')) {
   correctAnswers = { q49:'1', q50:'1', q51:'1', q52:'3', q53:'3', q54:'3', q55:'2', q56:'3', q57:'4', q58:'2', q59:'2', q60:'1', q61:'3', q62:'1', q63:'4', q64:'3', q65:'3' };
     } else if (pageTitle.includes('センター試験 文法語法クイズ 1994')) {
-      correctAnswers = { q1:'4', q2:'1', q3:'3', q4:'2', q5:'4', q6:'3', q7:'2', q8:'3', q9:'3', q10:'4', q11:'2', q12:'2', q13:'1', q14:'4', q15:'4', q16:'2', q17:'2' };
+  correctAnswers = { q66:'4', q67:'1', q68:'3', q69:'2', q70:'4', q71:'3', q72:'2', q73:'3', q74:'3', q75:'4', q76:'2', q77:'2', q78:'1', q79:'4', q80:'4', q81:'2', q82:'2' };
     } else if (pageTitle.includes('センター試験 文法語法クイズ 1995')) {
       correctAnswers = { q1:'3', q2:'3', q3:'4', q4:'4', q5:'3', q6:'4', q7:'3', q8:'4', q9:'2', q10:'3', q11:'3', q12:'2', q13:'3', q14:'2', q15:'3' };
     } else if (pageTitle.includes('センター試験 文法語法クイズ 1996')) {
