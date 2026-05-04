@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
   correctAnswers = { q83:'3', q84:'3', q85:'4', q86:'4', q87:'3', q88:'4', q89:'3', q90:'4', q91:'2', q92:'3', q93:'3', q94:'2', q95:'3', q96:'2', q97:'3' };
    } else if (pageTitle.includes('センター試験 文法語法クイズ 1996')) {
   correctAnswers = { q1:'2', q2:'4', q3:'1', q4:'3', q5:'3', q6:'2', q7:'2', q8:'3', q9:'2', q10:'4', q11:'2', q12:'2', q13:'1', q14:'2', q15:'4' };
-    } else if (pageTitle.includes('センター試験 文法語法クイズ 1997')) {
-      correctAnswers = { q1:'2', q2:'3', q3:'3', q4:'4', q5:'3', q6:'1', q7:'4', q8:'2', q9:'1', q10:'3', q11:'3', q12:'1', q13:'3', q14:'1' };
+   } else if (pageTitle.includes('センター試験 文法語法クイズ 1997')) {
+  correctAnswers = { q113:'2', q114:'3', q115:'3', q116:'4', q117:'3', q118:'1', q119:'4', q120:'2', q121:'1', q122:'3', q123:'3', q124:'1', q125:'3', q126:'1' };
     } else if (pageTitle.includes('センター試験 文法語法クイズ 1998')) {
       correctAnswers = { q1:'4', q2:'4', q3:'4', q4:'3', q5:'3', q6:'3', q7:'3', q8:'1', q9:'2', q10:'2', q11:'1', q12:'2', q13:'3', q14:'4' };
     } else if (pageTitle.includes('センター試験 文法語法クイズ 1999')) {
